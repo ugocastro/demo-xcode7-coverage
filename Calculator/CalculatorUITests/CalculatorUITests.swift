@@ -36,7 +36,21 @@ class CalculatorUITests: XCTestCase {
         XCTAssertEqual("-4.0", basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(2).value as? String)
     }
     
-    func testDivideByZero() {        
+    func testMultiply() {
+        let basicCalculatorElementsQuery = XCUIApplication().otherElements.containingType(.StaticText, identifier:"Basic Calculator")
+        let textField = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(0)
+        textField.tap()
+        textField.typeText("-15")
+        
+        let textField2 = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(1)
+        textField2.tap()
+        textField2.typeText("2")
+        basicCalculatorElementsQuery.buttons["x"].tap()
+        
+        XCTAssertEqual("-30.0", basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(2).value as? String)
+    }
+    
+    func testDivideByNonZeroValue() {
         let app = XCUIApplication()
         let basicCalculatorElementsQuery = app.otherElements.containingType(.StaticText, identifier:"Basic Calculator")
         let textField = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(0)
@@ -45,9 +59,23 @@ class CalculatorUITests: XCTestCase {
         
         let textField2 = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(1)
         textField2.tap()
-        textField2.typeText("0")
+        textField2.typeText("-1")
         app.buttons["/"].tap()
         
+        XCTAssertEqual("-1.0", basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(2).value as? String)
+    }
+    
+    func testDivideByZero() {        
+        let app = XCUIApplication()
+        let basicCalculatorElementsQuery = app.otherElements.containingType(.StaticText, identifier:"Basic Calculator")
+        let textField = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(0)
+        textField.tap()
+        textField.typeText("4")
+        
+        let textField2 = basicCalculatorElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(1)
+        textField2.tap()
+        textField2.typeText("0")
+        app.buttons["/"].tap()
         
         XCTAssertNotNil(app.alerts["Alert"], "Alert should be presented at screen")
     }
