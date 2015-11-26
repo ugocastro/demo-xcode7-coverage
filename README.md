@@ -1,3 +1,8 @@
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ugocastro/demo-xcode7-coverage/blob/master/LICENSE)
+![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
+![Language](https://img.shields.io/badge/language-swift-orange.svg)
+[![Build Status](https://travis-ci.org/ugocastro/demo-xcode7-coverage.svg)](https://travis-ci.org/ugocastro/demo-xcode7-coverage)
+
 ## Description
 This is a basic project that demonstrates the use of unit and UI tests with code coverage on **XCode 7** using **Swift 2**. It consists in a calculator application that performs basic operations, such as *sum*, *subtraction*, *multiplication* and *division*.
 
